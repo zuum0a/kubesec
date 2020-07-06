@@ -1,4 +1,4 @@
-This directory contains PGP keys used by Travis CI and [shyiko/kubesec-playground](https://hub.docker.com/r/shyiko/kubesec-playground/).  
+This directory contains PGP keys used by Travis CI and [zuum0a/kubesec-playground](https://hub.docker.com/r/zuum0a/kubesec-playground/).  
 Originally generated with:
 
 ```sh

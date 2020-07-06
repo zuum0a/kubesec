@@ -1,4 +1,4 @@
-# kubesec ![Latest Version](https://img.shields.io/badge/latest-0.9.2-blue.svg) [![Build Status](https://travis-ci.org/shyiko/kubesec.svg?branch=master)](https://travis-ci.org/shyiko/kubesec)
+# kubesec ![Latest Version](https://img.shields.io/badge/latest-0.9.2-blue.svg) [![Build Status](https://travis-ci.org/zuum0a/kubesec.svg?branch=master)](https://travis-ci.org/zuum0a/kubesec)
 
 Secure secret management for [Kubernetes](https://kubernetes.io/) (with [gpg](https://gnupg.org/), 
 [Google Cloud KMS](https://cloud.google.com/kms/) and [AWS KMS](https://aws.amazon.com/kms/) backends).
@@ -34,14 +34,14 @@ so much more user-friendly (+ you can ascertain that specific entry is present e
 #### macOS
 
 ```sh
-curl -sSL https://github.com/shyiko/kubesec/releases/download/0.9.2/kubesec-0.9.2-darwin-amd64 \
+curl -sSL https://github.com/zuum0a/kubesec/releases/download/0.9.2/kubesec-0.9.2-darwin-amd64 \
   -o kubesec && chmod a+x kubesec && sudo mv kubesec /usr/local/bin/  
 ``` 
 
 Verify PGP signature (optional but recommended):
 
 ```    
-curl -sSL https://github.com/shyiko/kubesec/releases/download/0.9.2/kubesec-0.9.2-darwin-amd64.asc \
+curl -sSL https://github.com/zuum0a/kubesec/releases/download/0.9.2/kubesec-0.9.2-darwin-amd64.asc \
   -o kubesec.asc
 curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import
 gpg --verify kubesec.asc /usr/local/bin/kubesec
@@ -52,23 +52,23 @@ gpg --verify kubesec.asc /usr/local/bin/kubesec
 ##### ... with [Homebrew](https://brew.sh/)
 
 ```
-brew install shyiko/kubesec/kubesec
-brew install shyiko/kubesec/kubesec --with-short-name # install as "ksec"
+brew install zuum0a/kubesec/kubesec
+brew install zuum0a/kubesec/kubesec --with-short-name # install as "ksec"
 ```
 
-> `brew install shyiko/kubesec/kubesec` is equivalent to `brew tap shyiko/kubesec && brew install kubesec`.
+> `brew install zuum0a/kubesec/kubesec` is equivalent to `brew tap zuum0a/kubesec && brew install kubesec`.
 
 #### Linux
 
 ```sh
-curl -sSL https://github.com/shyiko/kubesec/releases/download/0.9.2/kubesec-0.9.2-linux-amd64 \
+curl -sSL https://github.com/zuum0a/kubesec/releases/download/0.9.2/kubesec-0.9.2-linux-amd64 \
   -o kubesec && chmod a+x kubesec && sudo mv kubesec /usr/local/bin/  
 ``` 
 
 Verify PGP signature (optional but recommended):
 
 ```    
-curl -sSL https://github.com/shyiko/kubesec/releases/download/0.9.2/kubesec-0.9.2-linux-amd64.asc \
+curl -sSL https://github.com/zuum0a/kubesec/releases/download/0.9.2/kubesec-0.9.2-linux-amd64.asc \
   -o kubesec.asc
 curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import
 gpg --verify kubesec.asc /usr/local/bin/kubesec
@@ -76,7 +76,7 @@ gpg --verify kubesec.asc /usr/local/bin/kubesec
 
 #### Windows
 
-Download executable from the [Releases](https://github.com/shyiko/kubesec/releases) page.
+Download executable from the [Releases](https://github.com/zuum0a/kubesec/releases) page.
 
 ## Usage
 
@@ -220,11 +220,11 @@ If you have `docker` installed you don't need to download `kubesec` binary just 
 Instead, launch a container and start playing: 
 
 ```sh
-docker run -it --rm shyiko/kubesec-playground:0.9.2 /bin/bash
+docker run -it --rm zuum0a/kubesec-playground:0.9.2 /bin/bash
 $ kubesec encrypt secret.yml
 ```
 
-> `shyiko/kubesec-playground` image contains `gpg` 2.1+, kubesec, vim (as a default $EDITOR) and 
+> `zuum0a/kubesec-playground` image contains `gpg` 2.1+, kubesec, vim (as a default $EDITOR) and 
   secret PGP key of Jean-Luc Picard (PGP fingerprint - 6206C32E111611688694CF5530BDA87E3E71C268). 
 
 > Dockerfile [is included within this repo](kubesec-playground.dockerfile).
@@ -247,8 +247,8 @@ Please reach me at https://keybase.io/shyiko.
 > PREREQUISITE: [go1.9](https://golang.org/dl/)+.
 
 ```sh
-git clone https://github.com/shyiko/kubesec $GOPATH/src/github.com/shyiko/kubesec 
-cd $GOPATH/src/github.com/shyiko/kubesec
+git clone https://github.com/zuum0a/kubesec $GOPATH/src/github.com/zuum0a/kubesec 
+cd $GOPATH/src/github.com/zuum0a/kubesec
 make fetch
 
 go run kubesec.go

@@ -5,10 +5,10 @@ import (
 	"errors"
 	"fmt"
 	log "github.com/sirupsen/logrus"
-	awskms "github.com/shyiko/kubesec/aws/kms"
-	"github.com/shyiko/kubesec/crypto/aes"
-	googlecloudkms "github.com/shyiko/kubesec/gcp/kms"
-	"github.com/shyiko/kubesec/gpg"
+	awskms "github.com/zuum0a/kubesec/aws/kms"
+	"github.com/zuum0a/kubesec/crypto/aes"
+	googlecloudkms "github.com/zuum0a/kubesec/gcp/kms"
+	"github.com/zuum0a/kubesec/gpg"
 	"strings"
 )
 
@@ -89,7 +89,7 @@ func reconstructEncryptionContext(resource []byte, decryptDEK bool, ignoreMissin
 				if !IsVersionSupported(v) {
 					return nil, errors.New(fmt.Sprintf(
 						"It appears that Secret was encrypted with newer version of kubesec.\n" +
-							"Visit https://github.com/shyiko/kubesec for upgrade instructions.",
+							"Visit https://github.com/zuum0a/kubesec for upgrade instructions.",
 					))
 				}
 			case NSPGP:

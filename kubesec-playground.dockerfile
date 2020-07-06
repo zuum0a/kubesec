@@ -1,4 +1,4 @@
-# https://hub.docker.com/r/shyiko/kubesec-playground/
+# https://hub.docker.com/r/zuum0a/kubesec-playground/
 #
 # This image contains:
 # - 1 PGP secret key (FOR TESTING PURPOSES ONLY)
@@ -8,7 +8,7 @@
 # + gpg2.1+, kubesec, vim (as a default $EDITOR)
 #
 # Usage:
-# docker run -it --rm shyiko/kubesec-playground:latest /bin/bash
+# docker run -it --rm zuum0a/kubesec-playground:latest /bin/bash
 # $ kubesec encode secret.yml
 
 FROM ubuntu:16.04
@@ -30,11 +30,11 @@ RUN gpg2 --keyserver pgp.mit.edu --recv-keys 461A804F2609FD89
 ARG KUBESEC_VERSION=unspecified
 ENV KUBESEC_VERSION=$KUBESEC_VERSION
 
-RUN curl -sSL https://github.com/shyiko/kubesec/releases/download/$KUBESEC_VERSION/kubesec-$KUBESEC_VERSION-$(\
+RUN curl -sSL https://github.com/zuum0a/kubesec/releases/download/$KUBESEC_VERSION/kubesec-$KUBESEC_VERSION-$(\
       bash -c '[[ $OSTYPE == darwin* ]] && echo darwin || echo linux'\
     )-amd64 > kubesec &&\
   chmod a+x kubesec &&\
-  curl -sSL https://github.com/shyiko/kubesec/releases/download/$KUBESEC_VERSION/kubesec-$KUBESEC_VERSION-$(\
+  curl -sSL https://github.com/zuum0a/kubesec/releases/download/$KUBESEC_VERSION/kubesec-$KUBESEC_VERSION-$(\
       bash -c '[[ $OSTYPE == darwin* ]] && echo darwin || echo linux'\
     )-amd64.asc > kubesec.asc &&\
   gpg2 --verify kubesec.asc &&\

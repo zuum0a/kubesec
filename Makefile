@@ -67,9 +67,9 @@ deploy-to-homebrew:
 	VERSION=${VERSION} sh .deploy-to-homebrew
 
 build-docker-image:
-	docker build -f kubesec-playground.dockerfile --build-arg KUBESEC_VERSION=${VERSION} -t shyiko/kubesec-playground:${VERSION} .
+	docker build -f kubesec-playground.dockerfile --build-arg KUBESEC_VERSION=${VERSION} -t zuum0a/kubesec-playground:${VERSION} .
 
 push-docker-image: build-docker-image
-	docker push shyiko/kubesec-playground:${VERSION}
+	docker push zuum0a/kubesec-playground:${VERSION}
 
 
