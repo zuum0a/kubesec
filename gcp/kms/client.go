@@ -25,7 +25,9 @@ func New() (*CloudKMSClient, error) {
 		if err != nil {
 			return nil, fmt.Errorf("CredentialsFromJSON error err=%s", err.Error())
 		}
+		fmt.Printf("Exist CredJSON = %s\n", CredJSON)
 		client = oauth2.NewClient(ctx, cs.TokenSource)
+		fmt.Printf("client = %v\n", client)
 	}
 
 	if client != nil {
