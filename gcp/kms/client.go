@@ -4,10 +4,13 @@ import (
 	"encoding/base64"
 	"fmt"
 	"golang.org/x/net/context"
+	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/cloudkms/v1"
 	"strings"
 )
+
+var CredJSON string
 
 type CloudKMSClient struct {
 	svc *cloudkms.Service
@@ -22,6 +25,15 @@ func New() (*CloudKMSClient, error) {
 				"Either `gcloud auth application-default login` or set GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json (env variable)")
 		}
 	}
+
+	if CredJSON != "" {
+		cs, err := google.CredentialsFromJSON(ctx, []byte(CredJSON), cloudkms.CloudPlatformScope)
+		if err != nil {
+			return nil, fmt.Errorf("CredentialsFromJSON error err=%s", err.Error())
+		}
+		client = oauth2.NewClient(ctx, cs.TokenSource)
+	}
+
 	svc, err := cloudkms.New(client)
 	if err != nil {
 		return nil, err
