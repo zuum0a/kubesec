@@ -6,14 +6,15 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"regexp"
+	"sort"
+	"strings"
+
 	awskms "github.com/zuum0a/kubesec/aws/kms"
 	"github.com/zuum0a/kubesec/crypto/aes"
 	googlecloudkms "github.com/zuum0a/kubesec/gcp/kms"
 	"github.com/zuum0a/kubesec/gpg"
 	"gopkg.in/yaml.v2"
-	"regexp"
-	"sort"
-	"strings"
 )
 
 // "value"s are padded to a block size to avoid leaking length information
@@ -302,7 +303,9 @@ func (rs resource) setStringData(data map[string]string) {
 
 func unmarshal(rs []byte) (resource, error) {
 	m := make(map[interface{}]interface{})
+	fmt.Printf("rs = %s\n", string(rs))
 	yaml.Unmarshal(rs, &m)
+	fmt.Printf("m = '%v'\n", m)
 	if m["kind"] != "Secret" {
 		return nil, errors.New("kind != Secret")
 	}
