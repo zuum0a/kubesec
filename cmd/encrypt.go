@@ -306,6 +306,7 @@ func unmarshal(rs []byte) (resource, error) {
 	fmt.Printf("rs = %s\n", string(rs))
 	yaml.Unmarshal(rs, &m)
 	fmt.Printf("m = '%v'\n", m)
+	fmt.Printf("m[\"kind\"]= '%v'\n", m["Kind"])
 	if m["kind"] != "Secret" {
 		return nil, errors.New("kind != Secret")
 	}
@@ -319,6 +320,7 @@ func unmarshal(rs []byte) (resource, error) {
 }
 
 func unmarshalData(path string, m map[interface{}]interface{}) error {
+	fmt.Printf("m[\"%s\"]= '%v'\n", path, m[path])
 	if m[path] != nil {
 		data, ok := m[path].(map[interface{}]interface{})
 		if !ok {
