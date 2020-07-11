@@ -3,12 +3,13 @@ package kms
 import (
 	"encoding/base64"
 	"fmt"
+	"net/http"
+	"strings"
+
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/cloudkms/v1"
-	"net/http"
-	"strings"
 )
 
 var CredJSON string
@@ -27,10 +28,10 @@ func New() (*CloudKMSClient, error) {
 		}
 		fmt.Printf("Exist CredJSON = %s\n", CredJSON)
 		client = oauth2.NewClient(ctx, cs.TokenSource)
-		fmt.Printf("client = %v\n", client)
+		fmt.Printf("client = %#v\n", client)
 	}
 
-	if client != nil {
+	if client == nil {
 		cc, err := google.DefaultClient(ctx, cloudkms.CloudPlatformScope)
 		if err != nil {
 			if strings.Contains(err.Error(), "could not find default credentials") {
@@ -59,6 +60,7 @@ func (client *CloudKMSClient) Encrypt(keyResourceID string, plaintext []byte) ([
 }
 
 func (client *CloudKMSClient) Decrypt(keyResourceID string, ciphertext []byte) ([]byte, error) {
+	fmt.Printf("in CloudKMSClient.Decrypt keyResourceID=%v, ciphertext=%v\n", keyResourceID, ciphertext)
 	res, err := client.svc.Projects.Locations.KeyRings.CryptoKeys.Decrypt(keyResourceID, &cloudkms.DecryptRequest{
 		Ciphertext: base64.StdEncoding.EncodeToString(ciphertext),
 	}).Do()
